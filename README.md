@@ -1,4 +1,6 @@
 # Array-Sorting-Visualizer
-# Joseph Carbone
-#
+Author: Joseph Carbone
+
+Combinations of multiple source example codes.
+
 Practice with pygame graphics to implement visualizer on sorting algorithms.
