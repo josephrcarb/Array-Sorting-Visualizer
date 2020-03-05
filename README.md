@@ -1,7 +1,7 @@
 # Sorting-Visualizer
   Author: Joseph Carbone<br />
   Practice with pygame graphics to implement visualizer on sorting algorithms.<br />
-#Algorithms<h />
+#Algorithms<br />
  [x] Insertion Sort<br />
  [x] Quick Sort<br />
  []  Merge Sort<br />
