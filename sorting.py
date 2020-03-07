@@ -30,9 +30,10 @@ BLUE         = (   0,   0, 255)
 lightBLUE    = ( 135, 206, 250)
 #Buttons
 def text_objects(text, font):
-    textSurface = font.render(text, True, WHITE)
+    textSurface = font.render(text, True, BLACK)
     return textSurface, textSurface.get_rect()
-
+bg = pygame.image.load("bg.png").convert_alpha()
+bg = pygame.transform.scale(bg,(700,500))
 homeBut = pygame.image.load("home.png").convert_alpha()
 homeBut = pygame.transform.scale(homeBut,(50,50))
 Text = pygame.font.Font("AveraSansTcBld.ttf",20)
@@ -40,21 +41,24 @@ inserSurf, inserRect = text_objects("Insertion Sort", Text)
 inserRect.center = ((160), (150)) 
 quickSurf, quickRect = text_objects("Quick Sort", Text)
 quickRect.center = ((300), (150))
+banner, banRect = text_objects("Sorting Visualizer", Text)
+banRect.center = ((380), (75))
 
 def createArr():
     for _ in range(N):
         Arr.append(randrange(500))
     return Arr
-def partition(low,high): 
+def partition(low,high):
+    check = eventCheck()
+    if(check != None):
+        return check 
     i = (low-1)
     pivot = Arr[high] 
     for j in range(low , high):
         #event check breaks when click on home button, fix
         check = eventCheck()
-        if(check == 100):
-            return 100
-        if(check == 1):
-            return 1
+        if(check != None):
+            return check
         if(Arr[j] < pivot): 
             i = i+1 
             Arr[i],Arr[j] = Arr[j],Arr[i]
@@ -66,26 +70,37 @@ def partition(low,high):
     return ( i+1 ) 
 def quickSort(low,high): 
     if low < high: 
-        
         pi = partition(low,high) 
-        quickSort(low, pi-1) 
-        quickSort(pi+1, high)
+        if(pi == 3000):
+            return 100
+        if(pi == 5000):
+            return 1
+        check = quickSort(low, pi-1) 
+        if(check == 100):
+            return 100
+        if(check == 1):
+            return 1
+        check = quickSort(pi+1, high)
+        if(check == 100):
+            return 100
+        if(check == 1):
+            return 1
     return 0
 def eventCheck():
+    pos = pygame.mouse.get_pos()
     for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT:
-                return 100
+                return 3000
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                pos = pygame.mouse.get_pos()
                 if(100 > pos[0] > 50 and 100 > pos[1] > 50):
-                    return 1
+                    return 5000
 
 def insertionSort(): 
     for i in range(1, len(Arr)):
         check = eventCheck()
-        if(check == 100):
+        if(check == 3000):
             return 100
-        if(check == 1):
+        if(check == 5000):
             return 1
         key = Arr[i] 
         j = i-1
@@ -95,13 +110,16 @@ def insertionSort():
                 j -= 1
         Arr[j + 1] = key
         update(j+1)
+    return 0
           
 
 def update(curr):
     screen.fill(WHITE)
+    screen.blit(bg,(0,0))
     #Finish title bar on home and during sorting
-    pygame.draw.rect(screen, BLUE ,(160,20,440,100))
+    pygame.draw.rect(screen, lightBLUE ,(160,50,440,50))
     screen.blit(homeBut,(50,50))
+    ban = screen.blit(banner, banRect)
     ArrRects = []
     for i in range(N):
         ArrRects.append(pygame.Rect((2*i)+100,HEIGHT-50,arrWidth,-Arr[i]/2))
@@ -118,8 +136,9 @@ def update(curr):
 
 def drawHome():
     screen.fill(WHITE)
+    screen.blit(bg,(0,0))
 
-    pygame.draw.rect(screen, BLUE ,(160,20,440,100))
+    pygame.draw.rect(screen, lightBLUE ,(160,50,440,50))
     #Create Home Button
     h = screen.blit(homeBut,(50,50))
     #Add Buttons for each 
@@ -127,6 +146,7 @@ def drawHome():
     pygame.draw.rect(screen, lightBLUE ,(240,125,125,50))
     i = screen.blit(inserSurf, inserRect)
     q = screen.blit(quickSurf, quickRect)
+    ban = screen.blit(banner, banRect)
     pygame.display.flip()
     
 
@@ -142,7 +162,7 @@ if __name__ == "__main__":
         Arr = []
         Arr = createArr()
         h = screen.blit(homeBut,(50,50))
-        i = screen.blit(inserSurf, inserRect)
+
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 pygame.quit()
@@ -158,13 +178,10 @@ if __name__ == "__main__":
                     currentScreen = 3
         if(currentScreen == 1):
             currentScreen = drawHome()
-            currentScreen = 0
         if(currentScreen == 2):
             currentScreen = insertionSort()
-            currentScreen = 0
         if(currentScreen == 3):
             currentScreen = quickSort(0,len(Arr)-1)
-            currentScreen = 0
         
 
         # --- Go ahead and update the screen with what we've drawn.
