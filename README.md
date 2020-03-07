@@ -1,6 +1,14 @@
-# Array-Sorting-Visualizer
-Author: Joseph Carbone
+# Sorting-Visualizer
+  Author: Joseph Carbone<br />
+  Practice with pygame graphics to implement visualizer on sorting algorithms.<br />
+  <br />
+#Algorithms<br />
+ [x] Insertion Sort<br />
+ [x] Quick Sort<br />
+ []  Merge Sort<br />
+ []  Bubble Sort<br />
+ []  Heap Sort<br />
+ []  Shell Sort<br />
+ []  Comb Sort<br />
 
-Combinations of multiple source example codes.
 
-Practice with pygame graphics to implement visualizer on sorting algorithms.
