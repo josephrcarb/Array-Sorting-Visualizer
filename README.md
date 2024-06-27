@@ -1,27 +1,35 @@
-# Sorting Algorithm Visualizer
+# Sorting-Visualizer
 
-## Description
-- Simple python program that utilizes pygame library to visually display an algorithms path to sorting an array.
-  
-## How to use.
+### Description
+
+Simple python program that utilizes pygame library to visually display an algorithms path to sorting an array.
+
+### How to use:
+
+#### 1. Install Dependencies
+
 ```
-  cd into ./Sorting
-  
-  python sorting.py
-  or
-  open sorting.exe
-  
-  click algorithm to display sorting 
-  click home button to go back
+pip install -r requirements.txt
 ```
 
-## Algorithms <br />
- [x] Insertion Sort<br />
- [x] Quick Sort<br />
- []  Merge Sort<br />
- []  Bubble Sort<br />
- []  Heap Sort<br />
- []  Shell Sort<br />
- []  Comb Sort<br />
+#### 2. Run program
 
+```
+python sorting.py
+```
 
+or
+
+```
+python3 sorting.py
+```
+
+### Current Implemented Algorithms
+
+- [x] Insertion Sort
+- [x] Quick Sort
+- [ ] Merge Sort
+- [ ] Bubble Sort
+- [ ] Heap Sort
+- [ ] Shell Sort
+- [ ] Comb Sort
