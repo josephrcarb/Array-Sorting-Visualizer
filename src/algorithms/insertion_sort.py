@@ -1,3 +1,5 @@
+NAME = "Insertion Sort"
+
 def insertion_sort(sorting): 
     for i in range(1, len(sorting.arr)):
         check = sorting.event_check()
@@ -13,13 +15,13 @@ def insertion_sort(sorting):
         while j >= 0 and key < sorting.arr[j] : 
                 sorting.arr[j + 1] = sorting.arr[j]
                 j = j - 1
-                sorting.update(j + 1, "Insertion Sort") 
+                sorting.update(j + 1, NAME) 
                 check = sorting.event_check()
                 if check == 3000:
                     return 1
 
         sorting.arr[j + 1] = key
-        sorting.update(j + 1, "Insertion Sort")
+        sorting.update(j + 1, NAME)
         check = sorting.event_check()
         if check == 3000:
             return 1

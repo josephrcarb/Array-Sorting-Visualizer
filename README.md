@@ -28,8 +28,8 @@ python3 sorting.py
 
 - [x] Insertion Sort
 - [x] Quick Sort
-- [ ] Merge Sort
-- [ ] Bubble Sort
+- [x] Merge Sort
+- [x] Bubble Sort
 - [ ] Heap Sort
 - [ ] Shell Sort
 - [ ] Comb Sort

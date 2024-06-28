@@ -1,19 +1,23 @@
+NAME = "Quick Sort"
+
 def partition(sorting, low, high):
     i = (low - 1)
     pivot = sorting.arr[high] 
     for j in range(low , high):
-        sorting.event_check()
+        check = sorting.event_check()
+        if check == 3000:
+            return check
         if(sorting.arr[j] < pivot): 
             i = i + 1 
             sorting.arr[i], sorting.arr[j] = sorting.arr[j], sorting.arr[i]
-            sorting.update(j, "Quick Sort")
-            sorting.update(i, "Quick Sort")
+            sorting.update(j, NAME)
+            sorting.update(i, NAME)
             check = sorting.event_check()
             if check == 3000:
                 return check
     sorting.arr[i + 1], sorting.arr[high] = sorting.arr[high], sorting.arr[i + 1]
-    sorting.update(high,"Quick Sort")
-    sorting.update(i + 1, "Quick Sort")
+    sorting.update(high, NAME)
+    sorting.update(i + 1, NAME)
     check = sorting.event_check()
     if check == 3000:
         return check

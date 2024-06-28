@@ -2,6 +2,8 @@ from random import randrange
 import pygame
 from algorithms.insertion_sort import insertion_sort
 from algorithms.quick_sort import quick_sort
+from algorithms.merge_sort import merge_sort
+from algorithms.bubble_sort import bubble_sort
 
 pygame.init()
 pygame.display.set_caption("Array Sorting Visualizer Program")
@@ -75,6 +77,8 @@ class Sorting:
         self.screen.blit(self.home_button, (50, 50))
         pygame.draw.rect(self.screen, LIGHT_BLUE, (100, 125, 125, 50))
         pygame.draw.rect(self.screen, LIGHT_BLUE, (240, 125, 125, 50))
+        pygame.draw.rect(self.screen, LIGHT_BLUE, (380, 125, 125, 50))
+        pygame.draw.rect(self.screen, LIGHT_BLUE, (520, 125, 125, 50))
 
         self.banner, self.banner_rect = self.text_objects("Sorting Visualizer")
         self.banner_rect.center = ((380), (75))
@@ -85,8 +89,16 @@ class Sorting:
         quick_surface, quick_rect = self.text_objects("Quick Sort")
         quick_rect.center = ((300), (150))
 
+        merge_surface, merge_rect = self.text_objects("Merge Sort")
+        merge_rect.center = ((440), (150))
+
+        bubble_surface, bubble_rect = self.text_objects("Bubble Sort")
+        bubble_rect.center = ((580), (150))
+
         self.screen.blit(insert_surface, insert_rect)
         self.screen.blit(quick_surface, quick_rect)
+        self.screen.blit(merge_surface, merge_rect)
+        self.screen.blit(bubble_surface, bubble_rect)
         self.screen.blit(self.banner, self.banner_rect)
         pygame.display.flip()
 
@@ -130,6 +142,12 @@ if __name__ == "__main__":
                 if(365 > pos[0] > 240 and 175 > pos[1] > 125):
                     sorting.win_screen = 3
                     sorting.init_arr()
+                if(505 > pos[0] > 380 and 175 > pos[1] > 125):
+                    sorting.win_screen = 4
+                    sorting.init_arr()
+                if(645 > pos[0] > 520 and 175 > pos[1] > 125):
+                    sorting.win_screen = 5
+                    sorting.init_arr()
 
         if sorting.win_screen == 1:
             sorting.draw_home()
@@ -137,5 +155,9 @@ if __name__ == "__main__":
             sorting.win_screen = insertion_sort(sorting)
         elif sorting.win_screen == 3:
             sorting.win_screen = quick_sort(sorting, 0, len(sorting.arr) - 1)
+        elif sorting.win_screen == 4:
+            sorting.win_screen = merge_sort(sorting, 0, len(sorting.arr) - 1)
+        elif sorting.win_screen == 5:
+            sorting.win_screen = bubble_sort(sorting)
         pygame.display.flip()
         clock.tick(60)
